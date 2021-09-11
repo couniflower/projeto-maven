@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+    <!--    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>model.bo.Aluno</class>
+    <class>model.bo.Bairro</class>
+    <class>model.bo.Cep</class>
+    <class>model.bo.Cidade</class>
+    <class>model.bo.Compra</class>
+    <class>model.bo.Fornecedor</class>
+    <class>model.bo.ItemCompra</class>
+    <class>model.bo.ItemVenda</class>
+    <class>model.bo.Pagar</class>
+    <class>model.bo.Personal</class>
+    <class>model.bo.Produto</class>
+    <class>model.bo.Receber</class>
+    <class>model.bo.Venda</class>
+    <properties>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/espacofit?useTimezone=true&amp;serverTimezone=UTC"/>
+        <property name="javax.persistence.jdbc.user" value="root"/>
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="javax.persistence.jdbc.password" value="senha"/>
+
+        <property name="eclipselink.composite-unit" value="true"/>
+        <property name="eclipselink.target-server" value="WebLogic_10"/>
+        
+<!--        <property name="hibernate.use_sql_comments" value="false"/>-->
+<!--        <property name="use_sql_comments" value="false"/>-->
+<!--        <property name="hibernate.show_sql" value="false"/>-->
+<!--        <property name="show_sql" value="false"/>-->
+    </properties>
+    </persistence-unit>
+</persistence>
