@@ -1,15 +1,10 @@
 package model.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
-import model.bo.Fornecedor;
-import model.bo.ItemCompra;
+import model.bo.ItensCompra;
 
-public class ItemCompraDAO extends SuperClassDAO<ItemCompra> {
+public class ItemCompraDAO extends SuperClassDAO<ItensCompra> {
    private static ItemCompraDAO instance;
 
    public static ItemCompraDAO getInstance() {
@@ -22,20 +17,20 @@ public class ItemCompraDAO extends SuperClassDAO<ItemCompra> {
    }
 
    @Override
-   public List<ItemCompra> Retrieve() {
-      return entityManager.createQuery("select x from ItemCompra x", ItemCompra.class).getResultList();
+   public List<ItensCompra> Retrieve() {
+      return entityManager.createQuery("select x from ItensCompra x", ItensCompra.class).getResultList();
    }
 
    @Override
-   public ItemCompra Retrieve(int id) {
-      return entityManager.find(ItemCompra.class, id);
+   public ItensCompra Retrieve(int id) {
+      return entityManager.find(ItensCompra.class, id);
    }
 
    @Override
-   public void Delete(ItemCompra objeto) {
+   public void Delete(ItensCompra objeto) {
       try {
          entityManager.getTransaction().begin();
-         ItemCompra obj = entityManager.find(ItemCompra.class, objeto.getId());
+         ItensCompra obj = entityManager.find(ItensCompra.class, objeto.getId());
          entityManager.remove(obj);
          entityManager.getTransaction().commit();
       } catch (Exception e) {
