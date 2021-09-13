@@ -9,13 +9,13 @@
     <class>model.bo.Cidade</class>
     <class>model.bo.Compra</class>
     <class>model.bo.Fornecedor</class>
-    <class>model.bo.ItemCompra</class>
-    <class>model.bo.ItemVenda</class>
+    <class>model.bo.ItensCompra</class>
+    <class>model.bo.ItensVenda</class>
     <class>model.bo.Pagar</class>
     <class>model.bo.Personal</class>
     <class>model.bo.Produto</class>
     <class>model.bo.Receber</class>
-    <class>model.bo.Venda</class>
+    <class>model.bo.Vendas</class>
     <properties>
         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/espacofit?useTimezone=true&amp;serverTimezone=UTC"/>
         <property name="javax.persistence.jdbc.user" value="root"/>
