@@ -282,7 +282,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
    }//GEN-LAST:event_listaFornecedorActionPerformed
 
    private void receberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receberActionPerformed
-
+      TelaBuscaVenda telaBuscaVenda = new TelaBuscaVenda(null, true);
+      new ControllerBvenda(telaBuscaVenda);
+      telaBuscaVenda.setVisible(true);
    }//GEN-LAST:event_receberActionPerformed
 
    private void pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarActionPerformed

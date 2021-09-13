@@ -1,8 +1,9 @@
 package service;
 
-import java.util.List;
 import model.DAO.ItemVendaDAO;
 import model.bo.ItensVenda;
+
+import java.util.List;
 
 public class ItemVendaService {
    public static void Incluir(ItensVenda objeto){
