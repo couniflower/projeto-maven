@@ -2,6 +2,7 @@ package model.bo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity(name = "compras")
 public class Compra implements Serializable {
@@ -15,7 +16,7 @@ public class Compra implements Serializable {
    private String identificacao;
 
    @Column(name = "dataCompra")
-   private String data;
+   private Date data;
 
    @Column
    private float valorTotal;
@@ -26,7 +27,7 @@ public class Compra implements Serializable {
    public Compra() {
    }
 
-   public Compra(Fornecedor fornecedor, int id, String identificacao, String data, float valorTotal, String obs) {
+   public Compra(Fornecedor fornecedor, int id, String identificacao, Date data, float valorTotal, String obs) {
       this.fornecedor = fornecedor;
       this.id = id;
       this.identificacao = identificacao;
@@ -59,11 +60,11 @@ public class Compra implements Serializable {
       this.identificacao = identificacao;
    }
 
-   public String getData() {
+   public Date getData() {
       return data;
    }
 
-   public void setData(String data) {
+   public void setData(Date data) {
       this.data = data;
    }
 

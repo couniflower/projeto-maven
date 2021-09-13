@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Item {
-   @JoinColumn @ManyToOne
+   @JoinColumn(name = "idProduto") @ManyToOne
    private Produto produto;
 
    @Column

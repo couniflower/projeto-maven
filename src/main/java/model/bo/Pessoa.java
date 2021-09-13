@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class Pessoa {
-   @JoinColumn @ManyToOne
+   @JoinColumn(name = "idCep") @ManyToOne
    private Cep cep;
 
    @Column

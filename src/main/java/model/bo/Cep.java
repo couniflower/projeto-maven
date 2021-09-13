@@ -5,10 +5,10 @@ import java.io.Serializable;
 
 @Entity
 public class Cep implements Serializable {
-   @JoinColumn @ManyToOne
+   @JoinColumn(name = "idCidade") @ManyToOne
    private Cidade cidade;
 
-   @JoinColumn @ManyToOne
+   @JoinColumn(name = "idBairro") @ManyToOne
    private Bairro bairro;
 
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

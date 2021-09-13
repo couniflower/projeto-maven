@@ -29,7 +29,7 @@ public abstract class Impressao {
    @Column
    private float valorPago;
 
-   @Column(name = "statusPagar")
+   @Column(name = "statusReceber")
    private String status;
 
    public Impressao() {
