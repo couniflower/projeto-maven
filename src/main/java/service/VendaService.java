@@ -2,26 +2,26 @@ package service;
 
 import java.util.List;
 import model.DAO.VendaDAO;
-import model.bo.Venda;
+import model.bo.Vendas;
 
 public class VendaService {
-   public static void Incluir(Venda objeto){
+   public static void Incluir(Vendas objeto){
       VendaDAO.getInstance().Create(objeto);
    }
    
-   public static List<Venda> Listar(){
+   public static List<Vendas> Listar(){
       return VendaDAO.getInstance().Retrieve();
    }
    
-   public static Venda Listar(int id){
+   public static Vendas Listar(int id){
       return VendaDAO.getInstance().Retrieve(id);
    }
    
-   public static void Atualizar(Venda objeto){
+   public static void Atualizar(Vendas objeto){
       VendaDAO.getInstance().Update(objeto);
    }
    
-   public static void Excluir(Venda objeto){
+   public static void Excluir(Vendas objeto){
       VendaDAO.getInstance().Delete(objeto);
    }
 }
