@@ -1,6 +1,7 @@
 package controller.busca;
 
 import controller.ControllerFaturamento;
+import controller.DataSC;
 import controller.cadastro.ControllerAluno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.bo.Aluno;
 import view.telasBusca.TelaBuscaAluno;
 
-public class ControllerBaluno implements ActionListener {
+public class ControllerBaluno extends DataSC implements ActionListener {
    TelaBuscaAluno tela;
    public static int quemchama;
 
@@ -49,7 +50,7 @@ public class ControllerBaluno implements ActionListener {
             String dataNasc = "";
 
             if(aluno.getDtNasc() != null){
-               //dataNasc = aluno.getDtNasc().substring(8, 10) + "/" + aluno.getDtNasc().substring(5, 7) + "/" + aluno.getDtNasc().substring(0, 4);
+               dataNasc = toStringJava(aluno.getDtNasc());
             }
 
             String cepFormatado = aluno.getCep().getCep().substring(0, 5) + "-" + aluno.getCep().getCep().substring(5, 8);

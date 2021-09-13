@@ -1,5 +1,6 @@
 package controller.cadastro;
 
+import controller.DataSC;
 import controller.busca.ControllerBpersonal;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,7 @@ import service.CepService;
 import view.telasBusca.TelaBuscaPersonal;
 import view.telasCadastro.TelaCadastroPersonal;
 
-public class ControllerPersonal implements ActionListener, ItemListener {
+public class ControllerPersonal extends DataSC implements ActionListener, ItemListener {
    TelaCadastroPersonal tela;
    public static int codigo;
    
@@ -59,8 +60,7 @@ public class ControllerPersonal implements ActionListener, ItemListener {
          if(personal.getDtNasc() == null){
             tela.getTextoDataNasc().setText("");
          }else{
-            //String dataNasc = personal.getDtNasc().substring(8, 10) + personal.getDtNasc().substring(5, 7) + personal.getDtNasc().substring(0, 4);
-            //tela.getTextoDataNasc().setText(dataNasc);
+            tela.getTextoDataNasc().setText(toStringJava(personal.getDtNasc()));
          }
          tela.getTextoCompleEndereco().setText(personal.getCompleEndereco());
          tela.getTextoFone1().setText(personal.getFone1());
@@ -107,9 +107,9 @@ public class ControllerPersonal implements ActionListener, ItemListener {
          String dataFormat = data.substring(6, 10) + "-" + data.substring(3, 5) + "-" + data.substring(0, 2);
          
          if(tela.getTextoDataNasc().getValue() == null){
-            //personal.setDtNasc("não especificado");
+            personal.setDtNasc(null);
          }else{
-            //personal.setDtNasc(dataFormat);
+            personal.setDtNasc(toDate(tela.getTextoDataNasc().getText()));
          }
          
          int idC = 0;
@@ -158,8 +158,7 @@ public class ControllerPersonal implements ActionListener, ItemListener {
             if(personal.getDtNasc() == null){
                tela.getTextoDataNasc().setText("");
             }else{
-               //String dataNasc = personal.getDtNasc().substring(8, 10) + personal.getDtNasc().substring(5, 7) + personal.getDtNasc().substring(0, 4);
-               //tela.getTextoDataNasc().setText(dataNasc);
+               tela.getTextoDataNasc().setText(toStringJava(personal.getDtNasc()));
             }
             tela.getTextoCompleEndereco().setText(personal.getCompleEndereco());
             tela.getTextoFone1().setText(personal.getFone1());

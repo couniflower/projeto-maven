@@ -18,13 +18,11 @@ import java.util.*;
 public class ControllerFaturamento extends DataSC {
 
     public static TelaVendas tela = new TelaVendas();
-    public static List<ItemVenda> listaItens = new ArrayList<>();
+    public static List<ItensVenda> listaItens = new ArrayList<>();
     public static DefaultTableModel tabela;
     public static float valor;
-    public final DateTimeFormatter data = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public final DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH:mm");
     public LocalDateTime dataHora;
-    public Venda venda = new Venda();
+    public Vendas vendas = new Vendas();
     public static int codigoAluno;
     public static int codigoPersonal;
     public static int codigoVenda;
@@ -152,7 +150,7 @@ public class ControllerFaturamento extends DataSC {
                 }
                 tela.getTextoTelefonesA().setText(telefones);
 
-                venda.setAluno(aluno);
+                vendas.setAluno(aluno);
             }
         }
     }
@@ -194,7 +192,7 @@ public class ControllerFaturamento extends DataSC {
                 }
                 tela.getTextoTelefonesP().setText(telefones);
 
-                venda.setPersonal(personal);
+                vendas.setPersonal(personal);
             }
         }
     }
@@ -215,7 +213,7 @@ public class ControllerFaturamento extends DataSC {
 
     private void atualizaEstoque(Produto produto, int quantidade) {
         if(quantidade < produto.getQtdEstoque()){
-            ItemVenda item = new ItemVenda(produto, quantidade);
+            ItensVenda item = new ItensVenda(produto, quantidade);
             listaItens.add(item);
             valor += item.getSubtotal();
 
@@ -264,8 +262,8 @@ public class ControllerFaturamento extends DataSC {
         if(tela.getTextoStatus().getText().equalsIgnoreCase("off")){
             ativacao(true);
             tela.getTextoStatus().setText("EM ANDAMENTO");
-            venda.setData(toDate(dataHora));
-            venda.setIdentificacao("Venda " + dataHora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+            vendas.setData(toDate(dataHora));
+            vendas.setIdentificacao("Venda " + dataHora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
             horario(true);
         }else{
             JOptionPane.showMessageDialog(null, "Um novo faturamento não pode ser feito");
@@ -304,25 +302,25 @@ public class ControllerFaturamento extends DataSC {
         if(tela.getTextoStatus().getText().equalsIgnoreCase("off")){
             JOptionPane.showMessageDialog(null, "Não existe um faturamento em andamento para encerrar!\nAperte F2 para criar um novo faturamento.");
         }else{
-            if(venda.getAluno() == null){
+            if(vendas.getAluno() == null){
                 JOptionPane.showMessageDialog(null, "Aluno não selecionado!");
-            }else if(venda.getPersonal() == null){
+            }else if(vendas.getPersonal() == null){
                 JOptionPane.showMessageDialog(null, "Personal não selecionado!");
             }else{
-                venda.setValorTotal(valor);
-                VendaService.Incluir(venda);
+                vendas.setValorTotal(valor);
+                VendaService.Incluir(vendas);
 
                 for(var v : VendaService.Listar()){
-                    if(v.getIdentificacao().equalsIgnoreCase(venda.getIdentificacao())){
+                    if(v.getIdentificacao().equalsIgnoreCase(vendas.getIdentificacao())){
                         codigoVenda = v.getId();
                     }
                 }
 
-                venda = VendaService.Listar(codigoVenda);
+                vendas = VendaService.Listar(codigoVenda);
 
-                for(ItemVenda item : listaItens){
+                for(ItensVenda item : listaItens){
                     if(item != null) {
-                        item.setVenda(venda);
+                        item.setVenda(vendas);
                         ItemVendaService.Incluir(item);
                     }
                 }
@@ -330,24 +328,24 @@ public class ControllerFaturamento extends DataSC {
                 limpar();
                 tela.getValorTotal().setText("R$ 0,00");
                 valor = 0;
-                adicionarRecebimento(venda);
+                adicionarRecebimento(vendas);
                 ativacao(false);
             }
         }
     }
 
-    private void adicionarRecebimento(Venda venda) {
+    private void adicionarRecebimento(Vendas vendas) {
         Receber receber = new Receber();
 
-        receber.setVenda(venda);
-        receber.setDtEmissao(venda.getData());
-        receber.setValorEmitido(venda.getValorTotal());
+        receber.setVenda(vendas);
+        receber.setDtEmissao(vendas.getData());
+        receber.setValorEmitido(vendas.getValorTotal());
 
-        LocalDateTime dataVenda = toLocalDateTime(venda.getData());
+        LocalDateTime dataVenda = toLocalDateTime(vendas.getData());
         LocalDateTime vencimento = dataVenda.plusMonths(2);
         receber.setDtVencimento(toDate(vencimento));
 
-        receber.setStatus("ABERTO");
+        receber.setStatus("a");
 
         ReceberService.Incluir(receber);
     }

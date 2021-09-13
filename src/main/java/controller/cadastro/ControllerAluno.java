@@ -1,5 +1,6 @@
 package controller.cadastro;
 
+import controller.DataSC;
 import controller.busca.ControllerBaluno;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -7,15 +8,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
+import javax.swing.*;
+
 import model.bo.Aluno;
 import model.bo.Cep;
 import service.CepService;
 import view.telasBusca.TelaBuscaAluno;
 import view.telasCadastro.TelaCadastroAluno;
 
-public class ControllerAluno implements ActionListener, ItemListener {
+public class ControllerAluno extends DataSC implements ActionListener, ItemListener {
    TelaCadastroAluno tela;
    public static int codigo;
    List<Cep> ceps;
@@ -59,8 +60,7 @@ public class ControllerAluno implements ActionListener, ItemListener {
          if(aluno.getDtNasc() != null){
             tela.getTextoDataNasc().setText("");
          }else{
-            //String dataNasc = aluno.getDtNasc().substring(8, 10) + aluno.getDtNasc().substring(5, 7) + aluno.getDtNasc().substring(0, 4);
-            //tela.getTextoDataNasc().setText(dataNasc);
+            tela.getTextoDataNasc().setText(toStringJava(aluno.getDtNasc()));
          }
          tela.getTextoCompleEndereco().setText(aluno.getCompleEndereco());
          tela.getTextoFone1().setText(aluno.getFone1());
@@ -104,13 +104,10 @@ public class ControllerAluno implements ActionListener, ItemListener {
          String cpf = this.tela.getTextoCpf().getText().replace("-", "").replace(".", "");
          aluno.setCpf(cpf);
          
-         String data = this.tela.getTextoDataNasc().getText();
-         String dataFormat = data.substring(6, 10) + "-" + data.substring(3, 5) + "-" + data.substring(0, 2);
-         
-         if(this.tela.getTextoDataNasc().getValue() != null){
-            //aluno.setDtNasc("não especificado");
+         if(this.tela.getTextoDataNasc().getValue() == null){
+            aluno.setDtNasc(null);
          }else{
-            //aluno.setDtNasc(dataFormat);
+            aluno.setDtNasc(toDate(tela.getTextoDataNasc().getText()));
          }
          
          int idC = 0;
@@ -158,8 +155,7 @@ public class ControllerAluno implements ActionListener, ItemListener {
             if(aluno.getDtNasc() == null){
                tela.getTextoDataNasc().setText("");
             }else{
-               //String dataNasc = aluno.getDtNasc().substring(8, 10) + aluno.getDtNasc().substring(5, 7) + aluno.getDtNasc().substring(0, 4);
-               //tela.getTextoDataNasc().setText(dataNasc);
+               tela.getTextoDataNasc().setText(toStringJava(aluno.getDtNasc()));
             }
             tela.getTextoCompleEndereco().setText(aluno.getCompleEndereco());
             tela.getTextoFone1().setText(aluno.getFone1());

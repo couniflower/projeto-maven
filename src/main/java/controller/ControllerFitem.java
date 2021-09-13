@@ -1,7 +1,7 @@
 package controller;
 
 import model.bo.Item;
-import model.bo.ItemVenda;
+import model.bo.ItensVenda;
 import model.bo.Produto;
 import service.ProdutoService;
 import view.telasBusca.TelaBuscaEstoque;
@@ -50,7 +50,7 @@ public class ControllerFitem implements ActionListener {
 
         DefaultTableModel tabela = (DefaultTableModel) telaItem.getjTable1().getModel();
         if(ControllerFaturamento.listaItens.size() != 0){
-            for(ItemVenda item : ControllerFaturamento.listaItens) {
+            for(ItensVenda item : ControllerFaturamento.listaItens) {
                 if(item != null) {
                     tabela.addRow(new Object[]{ControllerFaturamento.listaItens.indexOf(item) + 1, item.getProduto().getDescricao(), item.getProduto().getValor(), item.getQuantidade(), item.getSubtotal()});
                 }
@@ -97,7 +97,7 @@ public class ControllerFitem implements ActionListener {
 
             int quantidade = Integer.parseInt(telaProduto.getQuantidade().getValue().toString());
             if(quantidade < produto.getQtdEstoque()){
-                ItemVenda item = new ItemVenda(produto, quantidade);
+                ItensVenda item = new ItensVenda(produto, quantidade);
 
                 Produto p = ProdutoService.Listar(produto.getId());
 

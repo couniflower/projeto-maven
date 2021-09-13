@@ -1,6 +1,7 @@
 package controller.busca;
 
 import controller.ControllerFaturamento;
+import controller.DataSC;
 import controller.cadastro.ControllerPersonal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.bo.Personal;
 import view.telasBusca.TelaBuscaPersonal;
 
-public class ControllerBpersonal implements ActionListener {
+public class ControllerBpersonal extends DataSC implements ActionListener {
    TelaBuscaPersonal tela;
    public static int quemchama;
 
@@ -48,7 +49,7 @@ public class ControllerBpersonal implements ActionListener {
 
             String dataNasc = "";
             if(personal.getDtNasc() != null){
-               //dataNasc = personal.getDtNasc().substring(8, 10) + "/" + personal.getDtNasc().substring(5, 7) + "/" + personal.getDtNasc().substring(0, 4);
+               dataNasc = toStringJava(personal.getDtNasc());
             }
 
             String cepFormatado = personal.getCep().getCep().substring(0, 5) + "-" + personal.getCep().getCep().substring(5, 8);
