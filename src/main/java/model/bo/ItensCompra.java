@@ -4,17 +4,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "itensCompra")
-public class ItemCompra extends Item implements Serializable {
+public class ItensCompra extends Item implements Serializable {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
 
    @JoinColumn @ManyToOne
    private Compra compra;
 
-   public ItemCompra() {
+   public ItensCompra() {
    }
 
-   public ItemCompra(int id, Compra compra, Produto produto, int quantidade) {
+   public ItensCompra(int id, Compra compra, Produto produto, int quantidade) {
       super(produto, quantidade);
       this.id = id;
       this.compra = compra;

@@ -4,12 +4,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity(name = "vendas")
-public class Venda implements Serializable {
-   @JoinColumn @ManyToOne
+@Entity
+@Table(name = "vendas")
+public class Vendas implements Serializable {
+   @JoinColumn(name = "idPersonal") @ManyToOne
    private Personal personal;
 
-   @JoinColumn @ManyToOne
+   @JoinColumn(name = "idAluno") @ManyToOne
    private Aluno aluno;
 
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +28,10 @@ public class Venda implements Serializable {
    @Column
    private String obs;
 
-   public Venda() {
+   public Vendas() {
    }
 
-   public Venda(Personal personal, Aluno aluno, int id, String identificacao, Date data, float valorTotal, String obs) {
+   public Vendas(Personal personal, Aluno aluno, int id, String identificacao, Date data, float valorTotal, String obs) {
       this.personal = personal;
       this.aluno = aluno;
       this.id = id;
